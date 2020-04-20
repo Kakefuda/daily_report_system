@@ -15,7 +15,7 @@ import models.Report;
 /**
  * Servlet implementation class ReportsNewServlet
  */
-@WebServlet("/reports/index")
+@WebServlet("/reports/new")
 public class ReportsNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
