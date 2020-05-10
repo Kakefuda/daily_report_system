@@ -13,14 +13,14 @@
             <tbody>
                 <tr>
                     <th class="business_name">氏名</th>
-                    <th class="business_date">日付</th>
+                    <th class="business_business_opportunities">商談先</th>
                     <th class="business_title">タイトル</th>
                     <th class="business_action">操作</th>
                 </tr>
                 <c:forEach var="business" items="${businesses}" varStatus="status">
                    <tr class="row${status.count % 2}">
                        <td class="business_name"><c:out value="${business.employee.name}" /></td>
-                       <td class="business_date"><fmt:formatDate value='${business.business_date}' /></td>
+                       <td class="business_business_opportunities">${business.business_opportunities}</td>
                        <td class="business_title">${business.title}</td>
                        <td class="business_action"><a href="<c:url value='/businesses/show?id=${business.id}' />">詳細を見る</a></td>
                    </tr>

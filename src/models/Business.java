@@ -14,17 +14,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 @Table(name = "businesses")
 @NamedQueries({
-    @NamedQuery(
-        name = "getAllBusinesses",
-        query = "SELECT b FROM Business AS b ORDER BY b.id DESC"
-        ),
-    @NamedQuery(
-        name = "getBusinessesCount",
-        query = "SELECT COUNT(b) FROM Business AS b"
-        ),
+        @NamedQuery(name = "getAllBusinesses", query = "SELECT b FROM Business AS b ORDER BY b.id DESC"),
+        @NamedQuery(name = "getBusinessesCount", query = "SELECT COUNT(b) FROM Business AS b"),
+        @NamedQuery(name = "getMyAllBusinesses", query = "SELECT b FROM Business AS b WHERE b.employee = :employee ORDER BY b.id DESC"),
+        @NamedQuery(name = "getMyBusinessesCount", query = "SELECT COUNT(b) FROM Business AS b WHERE b.employee = :employee")
 })
 @Entity
 public class Business {

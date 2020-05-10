@@ -42,6 +42,7 @@ public class BusinessesUpdateServlet extends HttpServlet {
 
             Business b = em.find(Business.class, (Integer) (request.getSession().getAttribute("business_id")));
 
+            b.setBusiness_opportunities(request.getParameter("business_opportunities"));
             b.setTitle(request.getParameter("title"));
             b.setContent(request.getParameter("content"));
             b.setUpdated_at(new Timestamp(System.currentTimeMillis()));

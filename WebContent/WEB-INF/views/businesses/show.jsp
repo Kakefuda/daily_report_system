@@ -4,7 +4,7 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${report != null}">
+            <c:when test="${business != null}">
                 <h2>日報　詳細ページ</h2>
 
                 <table>
@@ -12,6 +12,18 @@
                         <tr>
                             <th>氏名</th>
                             <td><c:out value="${business.employee.name}" /></td>
+                        </tr>
+                        <tr>
+                            <th>商談先</th>
+                            <td>
+                                <pre><c:out value="${business.business_opportunities}" /></pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>タイトル</th>
+                            <td>
+                                <pre><c:out value="${business.title}" /></pre>
+                            </td>
                         </tr>
                         <tr>
                             <th>内容</th>

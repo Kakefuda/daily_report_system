@@ -35,15 +35,17 @@ public class BusinessesCreateServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String _token = (String)request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String _token = (String) request.getParameter("_token");
+        if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             Business b = new Business();
 
             b.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
 
+            b.setBusiness_opportunities(request.getParameter("business_opportunities"));
             b.setTitle(request.getParameter("title"));
             b.setContent(request.getParameter("content"));
 
@@ -52,7 +54,7 @@ public class BusinessesCreateServlet extends HttpServlet {
             b.setUpdated_at(currentTime);
 
             List<String> errors = BusinessValidator.validate(b);
-            if(errors.size() > 0) {
+            if (errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
@@ -61,17 +63,18 @@ public class BusinessesCreateServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/businesses/new.jsp");
                 rd.forward(request, response);
+
             } else {
                 em.getTransaction().begin();
                 em.persist(b);
                 em.getTransaction().commit();
                 em.close();
+
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
                 response.sendRedirect(request.getContextPath() + "/businesses/index");
             }
+
         }
     }
-
 }
-

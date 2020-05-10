@@ -43,10 +43,10 @@ public class BusinessesEditServlet extends HttpServlet {
         if(b != null && login_employee.getId() == b.getEmployee().getId()) {
             request.setAttribute("business", b);
             request.setAttribute("_token", request.getSession().getId());
-            request.getSession().setAttribute("report_id", b.getId());
+            request.getSession().setAttribute("business_id", b.getId());
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/businesses/edit.jsp");
         rd.forward(request, response);
     }
 
