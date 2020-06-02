@@ -17,6 +17,11 @@
 
 <label for="business_opportunities">商談先</label><br />
 <input type="text" name="business_opportunities" value="${business.business_opportunities}" />
+ID<select name="contacts">
+<c:forEach var="tmp" items="${list}">
+<option value="${tmp.id}"><c:out value="${tmp.name}" /></option>
+</c:forEach>
+</select><br>
 <br /><br />
 
 <label for="title">タイトル</label><br />
